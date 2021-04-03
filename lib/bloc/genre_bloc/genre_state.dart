@@ -7,18 +7,18 @@ class GenreState extends Equatable{
 
 }
 
-class InitialState extends GenreState {}
+class GenreInitialState extends GenreState {}
 
-class LoadingState extends GenreState {}
+class GenreLoadingState extends GenreState {}
 
-class FetchSuccess extends GenreState{
+class GenreFetchSuccess extends GenreState{
 
   List<GenreModel> genres;
-  FetchSuccess({this.genres});
+  GenreFetchSuccess({this.genres});
 
 }
 
-class ErrorState extends GenreState{
+class GenreErrorState extends GenreState{
   String message;
-  ErrorState({this.message});
+  GenreErrorState({this.message});
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_sdaia/colors.dart';
 import 'package:movie_app_sdaia/widgets/genre_view.dart';
 import 'package:movie_app_sdaia/widgets/searchField.dart';
 
@@ -121,6 +122,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: dark,
         title: Row(
           children: [
             Expanded(
@@ -208,7 +210,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                                                     begin: Alignment.bottomCenter,
                                                     end: Alignment.topCenter,
                                                     colors: [
-                                                      Colors.blueAccent,
+                                                      dark,
                                                       Colors.transparent,
                                                     ],
                                                     stops: [
@@ -255,12 +257,12 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                                   height: 8,
                                   width: 8,
                                   decoration: BoxDecoration(
-                                    color: index == imageInShow ? Colors.white.withOpacity(0.65) : Colors.grey[500],
+                                    color: index == imageInShow ? gold  : Colors.grey[500],
                                     shape: BoxShape.circle,
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 3.0,
-                                        color: index == imageInShow ? Colors.white : Colors.black.withOpacity(0.50),
+                                        color: index == imageInShow ? gold : Colors.black.withOpacity(0.50),
                                         offset: Offset(0,0),
                                       ),
                                     ],

@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_sdaia/bloc/genre_bloc/genre_bloc.dart';
 import 'package:movie_app_sdaia/bloc/genre_bloc/genre_event.dart';
 import 'package:movie_app_sdaia/bloc/genre_bloc/genre_state.dart';
+import 'package:movie_app_sdaia/colors.dart';
+import 'package:movie_app_sdaia/widgets/movie_by_genre_view.dart';
 
 class GenresView extends StatefulWidget {
   @override
@@ -31,37 +33,44 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
 
+    Size size = MediaQuery.of(context).size;
+
     return BlocBuilder<GenreBloc, GenreState>(
       builder: (context, state){
-        if(state is InitialState){
-          return CircularProgressIndicator();
+        if(state is GenreInitialState){
+          return Center(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 25,
+              width: 25,
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
-        else if(state is LoadingState){
-          return CircularProgressIndicator();
+        else if(state is GenreLoadingState){
+          return Center(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 25,
+              width: 25,
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
-        else if(state is FetchSuccess){
-          // setState(() {
-          //   _tabController = TabController(vsync: this, length: state.genres.length);
-          //   _tabController.addListener(() {
-          //     if (_tabController.indexIsChanging) {
-          //
-          //     }
-          //   });
-          // });
-
+        else if(state is GenreFetchSuccess){
           return Container(
-              height: 300,
+              height: size.height * 0.38,
               child: DefaultTabController(
                 length: state.genres.length,
                 child: Scaffold(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: dark,
                   appBar: PreferredSize(
                     preferredSize: Size.fromHeight(50.0),
                     child: AppBar(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: dark,
                       bottom: TabBar(
                           controller: _tabController,
-                          indicatorColor: Colors.red,
+                          indicatorColor: gold,
                           indicatorSize: TabBarIndicatorSize.tab,
                           indicatorWeight: 3.0,
                           unselectedLabelColor: Colors.white.withOpacity(0.30),
@@ -70,7 +79,8 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
                           tabs: List.generate(state.genres.length, (index){
                             return Container(
                                 padding: EdgeInsets.only(bottom: 15.0, top: 10.0),
-                                child: new Text(state.genres[index].name.toUpperCase(),
+                                child: new Text(
+                                    state.genres[index].name.toUpperCase(),
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.bold,
@@ -81,22 +91,13 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
                       ),
                     ),
                   ),
+
                   body: TabBarView(
                     controller: _tabController,
                     physics: NeverScrollableScrollPhysics(),
                     children: List.generate(state.genres.length, (index){
-                      return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 30,
-                        itemBuilder: (context, index){
-                          return Container(
-                            height: 150,
-                            color: Colors.green,
-                            padding: EdgeInsets.symmetric(horizontal: 10, ),
-                            margin: EdgeInsets.symmetric(horizontal: 5),
-                            child: Text("data"),
-                          );
-                        },
+                      return MovieByGenreView(
+                        genreID: state.genres[index].id,
                       );
                     }),
                   ),
@@ -104,11 +105,14 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
               )
           );
         }
-        else if(state is ErrorState){
-          return Text(
-            state.message,
-            style: TextStyle(
-                color: Colors.red
+        else if(state is GenreErrorState){
+          return Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              state.message,
+              style: TextStyle(
+                  color: Colors.red
+              ),
             ),
           );
         }

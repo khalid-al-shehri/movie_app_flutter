@@ -11,13 +11,13 @@ class GenreBloc extends Bloc<GenreEvent, GenreState>{
   Stream<GenreState> mapEventToState(GenreEvent event) async*{
 
     if(event is FetchDataGenreEvent){
-      yield LoadingState();
+      yield GenreLoadingState();
       try{
         var genres = await repo.getGenre();
-        yield FetchSuccess(genres: genres);
+        yield GenreFetchSuccess(genres: genres);
       }catch(e){
         print(e.toString());
-        yield ErrorState(message: e.toString());
+        yield GenreErrorState(message: e.toString());
       }
     }
 
