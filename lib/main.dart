@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_sdaia/bloc/genre_bloc/genre_bloc.dart';
+import 'package:movie_app_sdaia/repository/repository.dart';
 import 'package:movie_app_sdaia/screen/mainScreen.dart';
 import 'package:movie_app_sdaia/widgets/searchField.dart';
 
+import 'bloc/genre_bloc/genre_state.dart';
+
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+  runApp(
+    MaterialApp(
+      home: BlocProvider(
+        create: (context) => GenreBloc(InitialState(), Repository()),
+        child: MainScreen(),
       ),
-      initialRoute: MainScreen().id,
-      routes: {
-        MainScreen().id : (context) => MainScreen()
-      },
-    );
-  }
+    )
+  );
 }
-
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_sdaia/widgets/genre_view.dart';
 import 'package:movie_app_sdaia/widgets/searchField.dart';
 
 class MainScreen extends StatefulWidget {
@@ -40,12 +41,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
   PageController _pageController = PageController();
   int imageInShow = 0;
-
-  TabController _tabController;
-
-  List listOfGenre = [
-    "Animation", "Crime", "Comedy", "Documentry", "Future"
-  ];
 
 
   List listOfActors = [
@@ -109,18 +104,13 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: listOfGenre.length);
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        // moviesByGenreBloc..drainStream();
-      }
-    });
+
   }
 
 
   @override
   void dispose() {
-    _tabController.dispose();
+
     super.dispose();
   }
 
@@ -286,60 +276,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
             ),
 
             // Genre
-            Container(
-                height: size.height * 0.35,
-                child: DefaultTabController(
-                  length: listOfGenre.length,
-                  child: Scaffold(
-                    backgroundColor: Colors.grey,
-                    appBar: PreferredSize(
-                      preferredSize: Size.fromHeight(50.0),
-                      child: AppBar(
-                        backgroundColor: Colors.grey,
-                        bottom: TabBar(
-                          controller: _tabController,
-                          indicatorColor: Colors.red,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicatorWeight: 3.0,
-                          unselectedLabelColor: Colors.white.withOpacity(0.30),
-                          labelColor: Colors.white,
-                          isScrollable: true,
-                          tabs: List.generate(listOfGenre.length, (index){
-                            return Container(
-                                padding: EdgeInsets.only(bottom: 15.0, top: 10.0),
-                                child: new Text(listOfGenre[index].toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  )
-                                )
-                            );
-                          })
-                        ),
-                      ),
-                    ),
-                    body: TabBarView(
-                      controller: _tabController,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: List.generate(listOfGenre.length, (index){
-                        return ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 30,
-                          itemBuilder: (context, index){
-                            return Container(
-                              height: 150,
-                              color: Colors.green,
-                              padding: EdgeInsets.symmetric(horizontal: 10, ),
-                              margin: EdgeInsets.symmetric(horizontal: 5),
-                              child: Text("data"),
-                            );
-                          },
-                        );
-                      }),
-                    ),
-                  ),
-                )
-            ),
+            GenresView(),
 
             // Top Actors
             Container(
