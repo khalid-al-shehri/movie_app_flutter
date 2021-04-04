@@ -31,6 +31,10 @@ dependencies:
   flutter_bloc: ^7.0.0
   equatable: ^2.0.0
   http: ^0.13.1
+  share: ^2.0.1
+  sqflite: ^2.0.0+3
+  connectivity: ^3.0.3
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:
