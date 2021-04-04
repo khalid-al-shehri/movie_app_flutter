@@ -35,7 +35,6 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {showSearchHistory = false;});
     if(searchController.text.length > 0){
       FocusScope.of(context).unfocus();
-      saveSearchInLocal();
       bloc.add(FetchDataSearchEvent(searchValue: searchController.text));
     }
   }
@@ -70,6 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             onSubmitted: (value){
               search();
+              saveSearchInLocal();
             },
             onChanged: (value){
               if(value.length == 0){
@@ -92,6 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: Colors.white.withOpacity(0.60),
                 onPressed: (){
                   search();
+                  saveSearchInLocal();
                 },
               ),
             ),
@@ -109,7 +110,6 @@ class _SearchScreenState extends State<SearchScreen> {
               builder: (context, response){
                 if(response.hasData){
                   if(response.data.length > 0){
-                    print(response.data.toString());
                     return ListView.builder(
                       itemCount: response.data.length,
                       itemBuilder: (context, index){
