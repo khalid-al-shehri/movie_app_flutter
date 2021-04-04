@@ -38,7 +38,7 @@ class MovieModel {
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
-    popularity = json['popularity'];
+    popularity = json['popularity'].runtimeType != double ? json['popularity']+0.0 : json['popularity'];
     posterPath = json['poster_path'];
     releaseDate = json['release_date'];
     title = json['title'];
