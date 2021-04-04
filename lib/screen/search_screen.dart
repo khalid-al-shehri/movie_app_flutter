@@ -110,6 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
               builder: (context, response){
                 if(response.hasData){
                   if(response.data.length > 0){
+
                     return ListView.builder(
                       itemCount: response.data.length,
                       itemBuilder: (context, index){
@@ -133,7 +134,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                           SizedBox(width: 15,),
 
                                           Text(
-                                            response.data[index]['SearchValue'],
+                                            response.data[(response.data.length - 1) - index]['SearchValue'],
                                             style: TextStyle(
                                                 color: Colors.white
                                             ),
@@ -143,7 +144,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ),
                                     onPressed: (){
                                       setState(() {
-                                        searchController.text = response.data[index]['SearchValue'];
+                                        searchController.text = response.data[(response.data.length - 1) - index]['SearchValue'];
                                       });
                                       search();
                                     },
@@ -158,7 +159,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       color: headerTextColor,
                                     ),
                                     onPressed: (){
-                                      removeSearchFromLocal(response.data[index]['ID']);
+                                      removeSearchFromLocal(response.data[(response.data.length - 1) - index]['ID']);
                                     },
                                   ),
                                 )
