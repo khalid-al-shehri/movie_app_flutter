@@ -4,6 +4,8 @@ import 'package:movie_app_sdaia/bloc/genre_bloc/genre_bloc.dart';
 import 'package:movie_app_sdaia/bloc/genre_bloc/genre_event.dart';
 import 'package:movie_app_sdaia/bloc/genre_bloc/genre_state.dart';
 import 'package:movie_app_sdaia/colors.dart';
+import 'package:movie_app_sdaia/custom_widgets/no_internet.dart';
+import 'package:movie_app_sdaia/custom_widgets/place_holder.dart';
 import 'package:movie_app_sdaia/widgets/movie_by_genre_view.dart';
 
 class GenresView extends StatefulWidget {
@@ -38,24 +40,10 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
     return BlocBuilder<GenreBloc, GenreState>(
       builder: (context, state){
         if(state is GenreInitialState){
-          return Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 25,
-              width: 25,
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return PlaceHolder();
         }
         else if(state is GenreLoadingState){
-          return Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 25,
-              width: 25,
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return PlaceHolder();
         }
         else if(state is GenreFetchSuccess){
           return Container(
@@ -63,14 +51,14 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
               child: DefaultTabController(
                 length: state.genres.length,
                 child: Scaffold(
-                  backgroundColor: dark,
+                  backgroundColor: darkColor,
                   appBar: PreferredSize(
                     preferredSize: Size.fromHeight(50.0),
                     child: AppBar(
-                      backgroundColor: dark,
+                      backgroundColor: darkColor,
                       bottom: TabBar(
                           controller: _tabController,
-                          indicatorColor: gold,
+                          indicatorColor: goldColor,
                           indicatorSize: TabBarIndicatorSize.tab,
                           indicatorWeight: 3.0,
                           unselectedLabelColor: Colors.white.withOpacity(0.30),
@@ -106,7 +94,7 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
           );
         }
         else if(state is GenreErrorState){
-          return Padding(
+          return state.message == "NO_INTERNET" ? NoInternet() : Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               state.message,
