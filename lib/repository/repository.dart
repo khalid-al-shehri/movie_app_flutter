@@ -57,7 +57,6 @@ class Repository{
     var response = await http.get(Uri.https(baseUrl, getSearchUrl, {"api_key": apiKey, "language": "en-US", "query": searchValue.toString()}));
     if(response.statusCode == 200){
       var data = json.decode(response.body)['results'];
-      print(data);
       data.map((movie){
         moviesSearch.add(MovieModel.fromJson(movie));
       }).toList();
