@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app_sdaia/model/movieModel.dart';
+import 'package:movie_app_sdaia/model/movie_model.dart';
 
 class MovieByGenreState extends Equatable{
   @override
