@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_sdaia/colors.dart';
 
 class PlaceHolder extends StatelessWidget {
   @override
@@ -8,7 +9,9 @@ class PlaceHolder extends StatelessWidget {
         padding: EdgeInsets.all(10),
         height: 70,
         width: 70,
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          valueColor: new AlwaysStoppedAnimation<Color>(goldColor),
+        ),
       ),
     );
   }
