@@ -9,7 +9,7 @@ This application showing a list of movies and more details about each movie, and
 ![alt text](https://github.com/khalid-al-shehri/movie_app_flutter/blob/master/screenshot/mockup_1.jpg?raw=true)
 ![alt text](https://github.com/khalid-al-shehri/movie_app_flutter/blob/master/screenshot/mockup_2.jpg?raw=true)
 
-## Featchers :
+## Features :
 
 * Browse list of movies.
 * Browse list of casts in each movie.
