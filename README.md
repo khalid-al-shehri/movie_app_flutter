@@ -1,4 +1,4 @@
-# movie_app_sdaia
+# movie_app_flutter
 
 This application is a task from SDAIA after first interview. It is an application showing a list of movies and more details about each movie.
 

@@ -28,7 +28,7 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
 
   @override
   void dispose() {
-    _tabController.dispose();
+    // _tabController.dispose();
     super.dispose();
   }
 
@@ -94,7 +94,7 @@ class _GenresViewState extends State<GenresView> with SingleTickerProviderStateM
           );
         }
         else if(state is GenreErrorState){
-          return state.message == "NO_INTERNET" ? NoInternet() : Padding(
+          return state.message == "NO_INTERNET" ? Container() : Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               state.message,

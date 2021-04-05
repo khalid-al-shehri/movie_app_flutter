@@ -116,7 +116,7 @@ class _MovieByGenreViewState extends State<MovieByGenreView> {
           );
         }
         else if(state is MovieByGenreErrorState){
-          return state.message == "NO_INTERNET" ? NoInternet() : Padding(
+          return state.message == "NO_INTERNET" ? Container() : Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               state.message,

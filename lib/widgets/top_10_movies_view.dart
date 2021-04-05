@@ -10,6 +10,7 @@ import 'package:movie_app_sdaia/custom_widgets/place_holder.dart';
 import 'package:movie_app_sdaia/screen/movie_details_screen.dart';
 
 class Top10Movies extends StatefulWidget {
+
   @override
   _Top10MoviesState createState() => _Top10MoviesState();
 }
@@ -175,7 +176,7 @@ class _Top10MoviesState extends State<Top10Movies> {
           );
         }
         else if(state is TopRatedMoviesErrorState){
-          return state.message == "NO_INTERNET" ? NoInternet() : Padding(
+          return state.message == "NO_INTERNET" ? Container() : Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               state.message,

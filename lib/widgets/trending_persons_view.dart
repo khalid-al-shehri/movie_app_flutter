@@ -79,7 +79,7 @@ class _TrendingPersonsViewState extends State<TrendingPersonsView> {
           );
         }
         else if(state is TrendingPersonsErrorState){
-          return state.message == "NO_INTERNET" ? NoInternet() : Padding(
+          return state.message == "NO_INTERNET" ? Container() : Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               state.message,

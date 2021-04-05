@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_sdaia/bloc/Providers.dart';
-import 'package:movie_app_sdaia/bloc/casts_bloc/casts_bloc.dart';
-import 'package:movie_app_sdaia/bloc/casts_bloc/casts_state.dart';
-import 'package:movie_app_sdaia/bloc/movie_by_genre_bloc/movie_by_genre_bloc.dart';
-import 'package:movie_app_sdaia/bloc/movie_by_genre_bloc/movie_by_genre_event.dart';
-import 'package:movie_app_sdaia/bloc/movie_by_genre_bloc/movie_by_genre_state.dart';
-import 'package:movie_app_sdaia/bloc/movie_details_bloc/movie_details_bloc.dart';
-import 'package:movie_app_sdaia/bloc/movie_details_bloc/movie_details_state.dart';
 import 'package:movie_app_sdaia/bloc/similar_movies_bloc/similar_movies_bloc.dart';
 import 'package:movie_app_sdaia/bloc/similar_movies_bloc/similar_movies_event.dart';
 import 'package:movie_app_sdaia/bloc/similar_movies_bloc/similar_movies_state.dart';
@@ -15,7 +8,6 @@ import 'package:movie_app_sdaia/colors.dart';
 import 'package:movie_app_sdaia/custom_widgets/no_internet.dart';
 import 'package:movie_app_sdaia/custom_widgets/place_holder.dart';
 import 'package:movie_app_sdaia/custom_widgets/vote_stars.dart';
-import 'package:movie_app_sdaia/repository/repository.dart';
 import 'package:movie_app_sdaia/screen/movie_details_screen.dart';
 
 class SimilarMovieView extends StatefulWidget {
